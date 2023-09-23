@@ -1,13 +1,16 @@
+'use client'
 import React from 'react'
-import type { Food } from '@/types'
+import type { FoodProps } from '@/types'
 import { CustomButton } from '@/UI'
+import { useCartSetContext } from '@/contexts/CartContext'
 
 type Props = {
-  food: Food
+  food: FoodProps & { amount: number }
 }
 
 const FoodItem = (props: Props) => {
   const { food } = props
+  const dispatchCartCtx = useCartSetContext()
   return (
     <div className="pb-3">
       <div className="flex justify-between items-start">
@@ -20,9 +23,16 @@ const FoodItem = (props: Props) => {
         <div className="flex flex-col gap-2 items-end">
           <div className="flex justify-end gap-4">
             <span>Amount</span>
-            <span className="text-center px-4 border rounded-lg">{1}</span>
+            <span className="text-center px-4 border rounded-lg">
+              {food.amount}
+            </span>
           </div>
-          <CustomButton className="py-1">+Add</CustomButton>
+          <CustomButton
+            onClick={() => dispatchCartCtx({ type: 'ADD', payload: food })}
+            className="py-1"
+          >
+            +Add
+          </CustomButton>
         </div>
       </div>
 

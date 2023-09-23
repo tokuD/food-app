@@ -1,4 +1,7 @@
-import { Navbar } from '@/components'
+import { ModalContainer } from '@/UI'
+import { CartModal, Navbar } from '@/components'
+import { CartContextProvider } from '@/contexts/CartContext'
+import { ModalContextProvider } from '@/contexts/ModalContext'
 import React, { Fragment } from 'react'
 
 type Props = {
@@ -7,10 +10,15 @@ type Props = {
 
 const HomeTemplate = (props: Props) => {
   return (
-    <Fragment>
-      <Navbar />
-      {props.children}
-    </Fragment>
+    <CartContextProvider>
+      <ModalContextProvider>
+        <ModalContainer>
+          <CartModal />
+        </ModalContainer>
+        <Navbar />
+        {props.children}
+      </ModalContextProvider>
+    </CartContextProvider>
   )
 }
 

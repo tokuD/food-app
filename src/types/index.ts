@@ -1,8 +1,10 @@
-interface Food {
+interface FoodProps {
   id: string
   name: string
   description: string
   price: number
 }
 
-export type { Food }
+type CartProps = ({ amount: number } & FoodProps)[]
+
+export type { FoodProps, CartProps }

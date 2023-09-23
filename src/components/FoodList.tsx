@@ -1,29 +1,17 @@
+'use client'
 import { Card } from '@/UI'
 import React from 'react'
 import FoodItem from './FoodItem'
-import { Food } from '@/types'
+import { DUMMY_MEALS } from '@/constants'
+import { useCartValueContext } from '@/contexts/CartContext'
 
 type Props = {}
 
-const dummyFoods: Food[] = [
-  {
-    id: '1',
-    name: 'Sushi',
-    description: 'Finest fish and veggies',
-    price: 22.99,
-  },
-  {
-    id: '2',
-    name: 'Schnitzel',
-    description: 'A german speciality!',
-    price: 16.5,
-  },
-]
-
 const FoodList = (props: Props) => {
+  const cartCtx = useCartValueContext()
   return (
     <Card className="bg-white w-[700px] flex flex-col gap-2 mt-8">
-      {dummyFoods.map((food) => (
+      {cartCtx.map((food) => (
         <FoodItem
           key={food.id}
           food={food}

@@ -1,5 +1,4 @@
-import { Description } from '@/components'
-import FoodList from '@/components/FoodList'
+import { Description, FoodList } from '@/components'
 import { HomeTemplate } from '@/templates'
 
 export default function Home() {
